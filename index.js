@@ -33,19 +33,21 @@ var users = [
     }
 ];
 
-var document = {
-    type: 'file',     // 'file' or 'buffer'
-    template: html,
-    context: {
-        users: users
-    },
-    path: "./output.pdf"    // it is not required if type is buffer
-};
-
-pdf.create(document, options)
-    .then(res => {
-        console.log(res)
-    })
-    .catch(error => {
-        console.error(error)
-    });
+for(var i=0;i<users.length; i++){
+    var document = {
+        type: 'file',     // 'file' or 'buffer'
+        template: html,
+        context: {
+            users: users[i]
+        },
+        path: `./output${i}.pdf`    // it is not required if type is buffer
+    };
+    
+    pdf.create(document, options)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(error => {
+            console.error(error)
+        });
+}

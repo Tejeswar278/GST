@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dynamic-html-pdf": "^1.0.4"
+    "dynamic-html-pdf": "^1.0.4",
+    "pdf-merger-js": "^4.1.2"
   }
 }

@@ -1,0 +1,56 @@
+Credit Note
+    company_info 
+        Company_name
+        Address
+        GSTIN
+        S No
+        Date of issue
+
+    Invoice&Date list
+    
+    User_info
+        Name
+        Address
+        State
+        State_code
+        GSTIN/UIN
+
+    Data per entity
+        Description
+        HSN/SAC  
+        Amount
+        CGST_rate
+        CGST_amount
+        SGST_rate
+        SGST_amount
+
+    Invoice total
+
+
+Tax Invoice
+    company_info
+        Company_name
+        Address
+        GSTIN
+        S No
+        Date&Time of supply
+        Place of supply
+
+    User_info
+        user_ID
+        Name
+        Address
+        State
+        State_code
+        GSTIN/UIN
+    
+    Data per entity
+        Description
+        HSN/SAC  
+        Amount
+        CGST_rate
+        CGST_amount
+        SGST_rate
+        SGST_amount
+
+    Invoice total

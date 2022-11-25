@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-family: Helvetica, Sans-Serif;
+            font-size: 20px;
+        }
+        #container {
+            padding: 20px;
+        }
+        #table1 {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        .heading {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .receiver_GST {
+            margin-bottom: 40px;
+        }
+        .data_table {
+            width: 100%;
+            margin-bottom: 50px;
+            border-collapse: collapse;
+        }
+        .deltatech, .signature {
+            text-align: end;
+        }
+        .deltatech {
+            margin-bottom: 100px;
+        }
+        .note {
+            margin-bottom: 20px;
+        }
+        .bold_font{
+            font-weight: bold;
+            border: 1px solid black;
+        }
+        .address_col{
+            width: 400px;
+        }
+        .header {
+            background-color: rgb(210, 206, 206);
+            display: table;
+            width: 100%;
+            font-weight: bold;
+            height: 70px;
+            border: 1px solid black;
+        }
+        .header > * {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .header > div {
+            border: 1px solid black;
+            display: table-cell;
+        }
+        .sub_header {
+            display: table;
+            width: 100%;
+            height: 50%;
+            border-top: 1px solid black;
+        }
+        .sub_header > div {
+            text-align: center;
+            display: table-cell;
+            height: 100%;
+            vertical-align: middle;
+        }
+        .gst_rate {
+            width: 50%;height: 100%;
+            border-right: 1px solid black;
+        }
+        .gst_amt {
+            width: 50%;
+        }
+        .cgst_sgst {
+            padding-bottom: 5px;
+        }
+        .body{
+            border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            display: table;
+            width: 100%;
+        }
+        .body > div {
+            display: table-cell;
+            border-right: 1px solid black;
+            padding-left: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- TYPE OF THE FORMAT -->
+        <h3 class="heading">Tax Invoice</h3>
+​
+        <!-- office address and invoice date & number -->
+        <table id="table1">
+            <tbody>
+                <tr>
+                    <td>
+                        <!-- Office address table  -->
+                        <table>
+                            <caption style="white-space: nowrap;text-align: left; font-weight: bold;">Deltatech Gaming Limited</caption><br />
+                            <tr style="vertical-align: top;">
+                                <td>Address</td>
+                                <td>:</td>
+                                <td class="address_col">{{rakedata.info.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>GSTIN</td>
+                                <td>:</td>
+                                <td>{{rakedata.info.GSTIN}}</td>
+                            </tr>
+                            <tr>
+                                <td>S No</td>
+                                <td>:</td>
+                                <td>{{rakedata.info.sno}}</td>
+                            </tr>
+                            <tr>
+                                <td>Date &amp; Time of Supply</td>
+                                <td>:</td>
+                                <td>{{users.date}}</td>
+                            </tr>
+                            <tr>
+                                <td>Place of Supply</td>
+                                <td>:</td>
+                                <td>Kolkata</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align: top;padding-top:40px;text-align: left;width: 40%;">
+                        <table style="text-align: left;">
+                        <tr>
+                            <td>User ID :</td>
+                            <td>{{rakedata.user.user_id}}</td>
+                        </tr>
+                    </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+​
+        <!-- RECEIVER'S DETAILS -->
+        <table class="receiver_GST">
+            <caption style="white-space: nowrap;text-align: left; font-weight: bold;">Details of Receiver (Billed to)</caption>
+            <tr>
+                <td>Name</td>
+                <td>:&nbsp; {{rakedata.user_info.name}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>:&nbsp; {{rakedata.user_info.address}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>:&nbsp; {{rakedata.user_info.state}}</td>
+            </tr>
+            <tr>
+                <td>State code</td>
+                <td>:&nbsp; {{rakedata.user_info.stateCode}}</td>
+            </tr>
+            <tr>
+                <td>GSTIN/ UIN (if registered)</td>
+                <td>:&nbsp; {{rakedata.user_info.GSTIN_UIN}}</td>
+            </tr>
+        </table>
+​
+        <!-- TABLE OF CONTENT -->
+        <div id="userData">
+            <table class="data_table">
+                <div class="header">
+                    <div style="width: 30%;">Description of Goods/Services</div>
+                    <div style="width: 10%;">HSN/SAC</div>
+                    <div style="width: 10%;">Amount</div>
+                    <div class="GST" style="width: 25%;">
+                        <div class="cgst_sgst">CGST</div>
+                        <div class="sub_header">
+                            <div class="gst_rate">Rate</div>
+                            <div class="gst_amt">Amount</div>
+                        </div>
+                    </div>
+                    <div style="width: 25%;vertical-align: middle;">
+                        <div class="cgst_sgst">SGST</div>
+                        <div class="sub_header">
+                            <div class="gst_rate">Rate</div>
+                            <div class="gst_amt">Amount</div>
+                        </div>
+                    </div>
+                </div>
+    
+                <tbody>
+                    {{#each users.data}}
+                        <div class="body">
+                            <div style="width: 30%;">{{this.description}}</div>
+                            <div style="width: 10%;">{{this.HSN_SAC}}</div>
+                            <div style="width: 10%;">{{this.amount}}</div>
+                            <div style="width: 12.5%;">{{this.rate}}%</div>
+                            <div style="width: 12.5%;">{{this.SGST_amount}}</div>
+                            <div style="width: 12.5%;">{{this.rate}}%</div>
+                            <div style="width: 12.5%;">{{this.SGST_amount}}</div>
+                        </div>
+                    {{/each}}
+                    <tr style="border-collapse: collapse;margin-top: 20px;">
+                        <td colspan="4" style="color: white;width: 62.6%;"></td>
+                        <td class="bold_font" style="text-align: center;border-collapse: collapse;" colspan="2">Invoice Total</td>
+                        <td class="bold_font" style="width: 12.4%;border-collapse: collapse;">{{users.Invoice_total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">Certified that the particulars given above are true and correct and the amount is indicated</div>
+        <div>a) represent the price actually charged and that there is no flow additional consideration directly or indirectly from the buyer</div>
+        <div class="deltatech">For Deltatech Gaming Limited</div>
+        <div class="signature">Authorised Signatory</div>
+    </div>
+</body>
+</html>
